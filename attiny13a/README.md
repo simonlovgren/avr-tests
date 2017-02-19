@@ -20,7 +20,7 @@ Notes on ATTiny13A.
 ### High Byte
 
 | Bit(s) | Name        | Setting                  | Default |
-| ------ | ----------- | ------------------------ | ------- |
+| ------ | ----------- | ------------------------ | :-----: |
 | 7      | `N/A`       | Reserved                 | `1`     |
 | 6      | `N/A`       | Reserved                 | `1`     |
 | 5      | `N/A`       | Reserved                 | `1`     |
@@ -30,16 +30,11 @@ Notes on ATTiny13A.
 | 1      | `BODLEVEL0` | Brown-out detector level | `1`     |
 | 0      | `RSTDISBL`  | External reset disable   | `1`     |
 
-``` text
-+------+------+------+------+------+------+------+------+
-| HLB7 | HLB6 | HLB5 | HLB4 | HLB3 | HLB2 | HLB1 | HLB0 |
-+------+------+------+------+------+------+------+------+
-```
 
 ### Low Byte
 
 | Bit(s) | Name     | Setting                                        | Default |
-| ------ | -------- | ---------------------------------------------- | ------- |
+| ------ | -------- | ---------------------------------------------- | :-----: |
 | 7      | `SPIEN`  | Enable serial programming and data downloading | `0`     |
 | 6      | `EESAVE` | Preserve EEPROM memory through Chip Erase      | `1`     |
 | 5      | `WDTON`  | Watchdog Timer always on                       | `1`     |
@@ -48,12 +43,6 @@ Notes on ATTiny13A.
 | 2      | `SUT0`   | Select start-up time                           | `0`     |
 | 1      | `CKSEL1` | Select clock source                            | `1`     |
 | 0      | `CKSEL0` | Select clock source                            | `0`     |
-
-``` text
-+------+------+------+------+------+------+------+------+
-| FLB7 | FLB6 | FLB5 | FLB4 | FLB3 | FLB2 | FLB1 | FLB0 |
-+------+------+------+------+------+------+------+------+
-```
 
 ### Program fuses
 
