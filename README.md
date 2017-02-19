@@ -28,7 +28,7 @@ below, some arguments/flags are listed and explained.
 | -Os    | `N/A` | Optimize for minimum size. |
 | -o     | Name of file | Specify name- and (optionally) location of output file |
 
-Some simple examples:
+#### Some simple examples:
 ``` bash
 # List available microcontrollers
 avr-gcc -mmcu=help
@@ -53,25 +53,25 @@ avr-objcopy -j .text -j .data -O ihex program.elf program.hex
 AVRDude is a tool for programming avr mcus, set their fuse-bits as well as read
 data/settings from the chip. Some of its options are explained below.
 
-| Argument           |   | Description                                             |
-| ------------------ | - | ---------------------------------------------- |
-| `-p <partno>`      |   | This is to tell avrdude which mcu it's programming. |
-| `-b <baudrate>`    |   | This is for overriding the default serial baud rate for programmers like STK500. Don't use this switch, the default is (most often) correct. |
-| `-B <bitrate>`     |   | This is for changing the bitrate, aka. the speed, at which the programmer talks to the mcu.  |
-| `-C <config-file>` |   | The config file tells avrdude about all different ways it can talk to the programmer. Usually the default config works fine, so don't use this if not needed. |
-| `-c <programmer>`  |   | This argument specifies which programmer is used (ex. `stk500`, `buspirate`, etc.). |
-| `-D`               |   | This disables erasing the chip before programming. Don't use this unless needed in special cases. |
-| `-P <port>`        |   | The port at which the programmer is connected (ex. `/dev/ttyUSB0`) |
-| `-F`               |   | This overrides the signature check that makes sure the chip to be programmed is the same as specified with the `-p` flag. **The signature check is recommended, so do not use unless really needed!** |
-| `-e`               |   | This erases the chip. Usually not needed as the chip usually is auto-erased before flashing. |
+| Argument           | Important   | Description                                             |
+| ------------------ | ----------- | ---------------------------------------------- |
+| `-p <partno>`      |    | This is to tell avrdude which mcu it's programming. |
+| `-b <baudrate>`    |    | This is for overriding the default serial baud rate for programmers like STK500. Don't use this switch, the default is (most often) correct. |
+| `-B <bitrate>`     |    | This is for changing the bitrate, aka. the speed, at which the programmer talks to the mcu.  |
+| `-C <config-file>` |    | The config file tells avrdude about all different ways it can talk to the programmer. Usually the default config works fine, so don't use this if not needed. |
+| `-c <programmer>`  |    | This argument specifies which programmer is used (ex. `stk500`, `buspirate`, etc.). |
+| `-D`               |    | This disables erasing the chip before programming. Don't use this unless needed in special cases. |
+| `-P <port>`        |    | The port at which the programmer is connected (ex. `/dev/ttyUSB0`) |
+| `-F`               |    | This overrides the signature check that makes sure the chip to be programmed is the same as specified with the `-p` flag. **The signature check is recommended, so do not use unless really needed!** |
+| `-e`               |    | This erases the chip. Usually not needed as the chip usually is auto-erased before flashing. |
 | `-U <memtype>:r|w|v:<filename>[:format]` |   | This is the most importent argument and it has a lot of parts to explain, such that its informaiton merits its own sub-header. |
-| `-n`               |   | This means nothing is actually written to the chip and is good for verifying that the command is actually the one you want to perform (like apt-get's `--dry-run`). |
-| `-V`               |   | This turns **off** auto-verifying after writing. |
-| `-u`               |   | If you want to modify the fuse-bits, use this flag to tell avrdude you really want it (usually not needed for such things as clock configuration etc.). |
-| `-t`               |   | This is a terminal-mode where you can type out commands in a row. |
-| `-E`               |   | This lists some programmer specifications. |
-| `-v`               |   | This is to enable verbose output. |
-| `-q`               |   | This is to enable quiet mode, the opposite of `-v`. |
+| `-n`               |    | This means nothing is actually written to the chip and is good for verifying that the command is actually the one you want to perform (like apt-get's `--dry-run`). |
+| `-V`               |    | This turns **off** auto-verifying after writing. |
+| `-u`               |    | If you want to modify the fuse-bits, use this flag to tell avrdude you really want it (usually not needed for such things as clock configuration etc.). |
+| `-t`               |    | This is a terminal-mode where you can type out commands in a row. |
+| `-E`               |    | This lists some programmer specifications. |
+| `-v`               |    | This is to enable verbose output. |
+| `-q`               |    | This is to enable quiet mode, the opposite of `-v`. |
 
 *[Taken from ladyada.net](http://www.ladyada.net/learn/avr/avrdude.html)*
 
@@ -89,9 +89,9 @@ command to. This can either be `flash` or `eeprom` for ordinary programming/data
 `<filename>` is the file you want to write to- or read from.
 
 `format` is an optional flag that specifies the format of the input- or output file. Usually
-*Intel Hex* is used with the flag `i`, but others exist like `m` that interprets the `<filename>` directly as the data (see [Fuse bits](#fuse-bits)).\
+*Intel Hex* is used with the flag `i`, but others exist like `m` that interprets the `<filename>` directly as the data (see [Fuse bits](#fuse-bits)).
 
-Some examples:
+##### Examples
 ``` bash
 # dump eeprom to file
 -U eeprom:r:eeprom_dump.hex:i
