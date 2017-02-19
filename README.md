@@ -23,10 +23,10 @@ below, some arguments/flags are listed and explained.
 
 | Flag   | Value | Description |
 | ------ | ------------------------------ | ----------- |
-| -mmcu= | `help`,`atmega328`, `atmega32u4`, `...` | Microcontroller to compile for. Use `help` to list available values. |
-| -c     | `N/A` | Compile to object file (same as GCC). |
-| -Os    | `N/A` | Optimize for minimum size. |
-| -o     | Name of file | Specify name- and (optionally) location of output file |
+| `-mmcu=` | `help`,`atmega328`, `atmega32u4`, `...` | Microcontroller to compile for. Use `help` to list available values. |
+| `-c`     | `N/A` | Compile to object file (same as GCC). |
+| `-Os`    | `N/A` | Optimize for minimum size. |
+| `-o`     | Name of file | Specify name- and (optionally) location of output file |
 
 #### Some simple examples:
 ``` bash
@@ -55,16 +55,16 @@ data/settings from the chip. Some of its options are explained below.
 
 | Argument           | Important   | Description                                             |
 | ------------------ | ----------- | ---------------------------------------------- |
-| `-p <partno>`      |    | This is to tell avrdude which mcu it's programming. |
+| `-p <partno>`      | ![](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/tick.png)   | This is to tell avrdude which mcu it's programming. |
 | `-b <baudrate>`    |    | This is for overriding the default serial baud rate for programmers like STK500. Don't use this switch, the default is (most often) correct. |
 | `-B <bitrate>`     |    | This is for changing the bitrate, aka. the speed, at which the programmer talks to the mcu.  |
 | `-C <config-file>` |    | The config file tells avrdude about all different ways it can talk to the programmer. Usually the default config works fine, so don't use this if not needed. |
-| `-c <programmer>`  |    | This argument specifies which programmer is used (ex. `stk500`, `buspirate`, etc.). |
+| `-c <programmer>`  | ![](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/tick.png) | This argument specifies which programmer is used (ex. `stk500`, `buspirate`, etc.). |
 | `-D`               |    | This disables erasing the chip before programming. Don't use this unless needed in special cases. |
-| `-P <port>`        |    | The port at which the programmer is connected (ex. `/dev/ttyUSB0`) |
+| `-P <port>`        | ![](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/tick.png) | The port at which the programmer is connected (ex. `/dev/ttyUSB0`) |
 | `-F`               |    | This overrides the signature check that makes sure the chip to be programmed is the same as specified with the `-p` flag. **The signature check is recommended, so do not use unless really needed!** |
 | `-e`               |    | This erases the chip. Usually not needed as the chip usually is auto-erased before flashing. |
-| `-U <memtype>:r|w|v:<filename>[:format]` |   | This is the most importent argument and it has a lot of parts to explain, such that its informaiton merits its own sub-header. |
+| `-U <memtype>:r|w|v:<filename>[:format]` | ![](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/important.png) ![](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/important.png) | This is the most importent argument and it has a lot of parts to explain, such that its informaiton merits [its own sub-section](#-u-rwvformat). |
 | `-n`               |    | This means nothing is actually written to the chip and is good for verifying that the command is actually the one you want to perform (like apt-get's `--dry-run`). |
 | `-V`               |    | This turns **off** auto-verifying after writing. |
 | `-u`               |    | If you want to modify the fuse-bits, use this flag to tell avrdude you really want it (usually not needed for such things as clock configuration etc.). |
@@ -117,3 +117,7 @@ Example of setting the fuse bits using avrdude:
 # ATTiny13A Default: Internal 9.6MHz oscillator, Divide clock by 8, SPI Programming enabled.
 avrdude -c buspirate -p attiny13 -P /dev/ttyUSB0 -U hfuse:w:0xFF:m -U lfuse:w:0x6A:m
 ```
+
+***
+
+*Icons made by [Pixel Buddha](http://www.flaticon.com/authors/pixel-buddha)*
