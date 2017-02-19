@@ -21,9 +21,9 @@ sudo apt-get install -y avrdude
 and it works the same way as GCC. It does, however, have some special arguments. In the table
 below, some arguments/flags are listed and explained.
 
-| Flag   | Value | Description |
+| Argument   | Value | Description |
 | ------ | ------------------------------ | ----------- |
-| `-mmcu=` | `help`,`atmega328`, `atmega32u4`, `...` | Microcontroller to compile for. Use `help` to list available values. |
+| `-mmcu=<part>` | `help`,`atmega328`, `atmega32u4`, `...` | MCU to compile for. Use `help` to list available values. |
 | `-c`     | `N/A` | Compile to object file (same as GCC). |
 | `-Os`    | `N/A` | Optimize for minimum size. |
 | `-o`     | Name of file | Specify name- and (optionally) location of output file |
@@ -53,21 +53,25 @@ avr-objcopy -j .text -j .data -O ihex program.elf program.hex
 AVRDude is a tool for programming avr mcus, set their fuse-bits as well as read
 data/settings from the chip. Some of its options are explained below.
 
-| Argument           | Important   | Description                                             |
+#### Status icons
+- ![](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/tick.png) means the option is most often used or even needed.  
+- ![](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/important.png) means the option is important and possibly dangerous to use (eg. posibility of bricking the MCU or erasing its data).
+
+| Argument           | Status | Description                                             |
 | ------------------ | ----------- | ---------------------------------------------- |
-| `-p <partno>`      | ![](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/tick.png)   | This is to tell avrdude which mcu it's programming. |
+| `-p <partno>`      | ![standard option](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/tick.png)   | This is to tell avrdude which mcu it's programming. |
 | `-b <baudrate>`    |    | This is for overriding the default serial baud rate for programmers like STK500. Don't use this switch, the default is (most often) correct. |
 | `-B <bitrate>`     |    | This is for changing the bitrate, aka. the speed, at which the programmer talks to the mcu.  |
 | `-C <config-file>` |    | The config file tells avrdude about all different ways it can talk to the programmer. Usually the default config works fine, so don't use this if not needed. |
-| `-c <programmer>`  | ![](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/tick.png) | This argument specifies which programmer is used (ex. `stk500`, `buspirate`, etc.). |
+| `-c <programmer>`  | ![standard option](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/tick.png) | This argument specifies which programmer is used (ex. `stk500`, `buspirate`, etc.). |
 | `-D`               |    | This disables erasing the chip before programming. Don't use this unless needed in special cases. |
-| `-P <port>`        | ![](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/tick.png) | The port at which the programmer is connected (ex. `/dev/ttyUSB0`) |
-| `-F`               |    | This overrides the signature check that makes sure the chip to be programmed is the same as specified with the `-p` flag. **The signature check is recommended, so do not use unless really needed!** |
-| `-e`               |    | This erases the chip. Usually not needed as the chip usually is auto-erased before flashing. |
-| `-U <memtype>:r|w|v:<filename>[:format]` | ![](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/important.png) ![](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/important.png) | This is the most importent argument and it has a lot of parts to explain, such that its informaiton merits [its own sub-section](#-u-rwvformat). |
+| `-P <port>`        | ![standard option](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/tick.png) | The port at which the programmer is connected (ex. `/dev/ttyUSB0`) |
+| `-F`               | ![dangerous option](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/important.png) | This overrides the signature check that makes sure the chip to be programmed is the same as specified with the `-p` flag. **The signature check is recommended, so do not use unless really needed!** |
+| `-e`               | ![dangerous option](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/important.png) | This erases the chip. Usually not needed as the chip usually is auto-erased before flashing. |
+| `-U <memtype>:r|w|v:<filename>[:format]` | ![standard option](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/tick.png) ![dangerous option](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/important.png) | This is the most importent argument and it has a lot of parts to explain, such that its informaiton merits [its own sub-section](#-u-rwvformat). |
 | `-n`               |    | This means nothing is actually written to the chip and is good for verifying that the command is actually the one you want to perform (like apt-get's `--dry-run`). |
-| `-V`               |    | This turns **off** auto-verifying after writing. |
-| `-u`               |    | If you want to modify the fuse-bits, use this flag to tell avrdude you really want it (usually not needed for such things as clock configuration etc.). |
+| `-V`               | ![dangerous option](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/important.png) | This turns **off** auto-verifying after writing. |
+| `-u`               | ![dangerous option](https://raw.githubusercontent.com/simonlovgren/avr-tests/master/res/important.png) | If you want to modify the fuse-bits, use this flag to tell avrdude you really want it (usually not needed for such things as clock configuration etc.). |
 | `-t`               |    | This is a terminal-mode where you can type out commands in a row. |
 | `-E`               |    | This lists some programmer specifications. |
 | `-v`               |    | This is to enable verbose output. |
@@ -80,25 +84,27 @@ This flag is the most important one, as it specifies what memory on the mcu/chip
 what action to perform- as well as what file to use and its format. Let's break down the
 argument to its components:
 
-`<memtype>` is the part where you tell avrdude which part of the MCU you want to apply the
+- `<memtype>` is the part where you tell avrdude which part of the MCU you want to apply the
 command to. This can either be `flash` or `eeprom` for ordinary programming/data transfer *or*
 `efuse`, `lfuse` or `hfuse` for the chip configuration fuses (fuse bits).
 
-`r|w|v` is the mode of the command. `r` for *read*, `w` for *write* and `v` for *verify*.
+- `r|w|v` is the mode of the command. `r` for *read*, `w` for *write* and `v` for *verify*.
 
-`<filename>` is the file you want to write to- or read from.
+- `<filename>` is the file you want to write to- or read from.
 
-`format` is an optional flag that specifies the format of the input- or output file. Usually
+- `format` is an optional flag that specifies the format of the input- or output file. Usually
 *Intel Hex* is used with the flag `i`, but others exist like `m` that interprets the `<filename>` directly as the data (see [Fuse bits](#fuse-bits)).
 
 ##### Examples
 ``` bash
 # dump eeprom to file
 -U eeprom:r:eeprom_dump.hex:i
-
+```
+``` bash
 # Upload prog.hex to flash
 -U flash:w:prog.hex:i
-
+```
+``` bash
 # Write lower fuse byte to 0x6A
 -U lfuse:w:0x6A:m
 ```
