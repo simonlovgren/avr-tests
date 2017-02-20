@@ -115,8 +115,7 @@ The fuse bits are what configures how the mcu is to function, and it is very imp
 to know how they work before trying to configure the mcu/set the fuse bits. **If the wrong
 bits are set, the mcu can be bricked/locked from programming.**
 
-What fuse bits are available depends on the model of the mcu. Under each directory for
-a specific mcu, the fuse bits are explained in the README.
+What fuse bits are available- and their configuration depends on the model of the mcu. However, the usual fuse bytes are `efuse`, `hfuse` and `lfuse`. Under each directory for a specific mcu, the fuse bits available- and their configuration are explained in the README.
 
 Example of setting the fuse bits using avrdude:
 ``` bash
