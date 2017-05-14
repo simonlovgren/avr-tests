@@ -22,7 +22,7 @@ Notes on ATMega328P.
           |      |
   XTAL1 --+      +-- NC
           |      |
-  XTAL3 --+      +-- CLK
+  XTAL2 --+      +-- CLK
           |      |
      NC --+      +-- MISO
           |      |
