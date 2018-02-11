@@ -152,9 +152,9 @@ void loop()
     PORTD ^= 0b00000100;
 
     /**
-     * If one minute passed, pulse 2ms signal We must also alternate polarity
-     * of the pulse sent to the clock, so every other time we pulse the other
-     * way of the H-bridge.
+     * If one minute passed, pulse MOTOR_PULSE_DURATION_MS signal. We must
+     * also alternate polarity of the pulse sent to the clock, so every
+     * other time we pulse the "other way" of the H-bridge.
      *
      * 0bxxxxxx10 -> 0bxxxxxx01 -> 0bxxxxxx10 -> ...(contd.)
      */
