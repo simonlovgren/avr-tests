@@ -6,7 +6,7 @@
 #include <util/delay.h>
 
 int main(void) {
-  // Configure PORTB-pins
+  // Configure PD2 as output
   DDRD = 0x04;
 
   // Loop forever
