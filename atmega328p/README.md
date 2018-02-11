@@ -1,5 +1,5 @@
-# ATMega328P
-Notes on ATMega328P.
+# ATMega328/P
+Notes on ATMega328 and ATMega328P.
 
 ## Programming pinout
 ``` text
@@ -79,6 +79,11 @@ Notes on ATMega328P.
 | 1      | `CKSEL1` | Select clock source                            | `1`     |
 | 0      | `CKSEL0` | Select clock source                            | `0`     |
 
+### Read fuses
+
+``` bash
+avrdude -c buspirate -p atmega328p -P /dev/ttyUSB0 -U efuse:r:-:i -U hfuse:r:-:i -U lfuse:r:-:i
+```
 
 ### Program fuses
 
