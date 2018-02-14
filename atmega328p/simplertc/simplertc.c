@@ -103,7 +103,7 @@ void loop( void );
 /**
  * Counter to keep track of what second we are on.
  */
-static unsigned long seconds = 0;
+static volatile unsigned long seconds = 0;
 
 /**
  * Indication of which polarity we are to pulse with.
