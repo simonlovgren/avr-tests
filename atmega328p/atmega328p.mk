@@ -1,4 +1,4 @@
 include ../../common.mk
 
-# ATTiny13A specific settings
+# ATMega328p specific settings
 BOARD := atmega328p

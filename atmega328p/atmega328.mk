@@ -1,4 +1,4 @@
 include ../../makefiles/common.mk
 
-# ATTiny13A specific settings
+# ATMega328 specific settings
 BOARD := atmega328
