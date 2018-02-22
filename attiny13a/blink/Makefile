@@ -1,11 +1,13 @@
-PORT := /dev/ttyUSB0
-BOARD := attiny13
-PROGRAMMER := buspirate
+# Include common makefile(s)
+include ../attiny13.mk
 
+# Set phony targets
 .PHONY: all upload clean
 
+# Set default goal
 all: blink.hex
 
+# Set up build goals
 upload: blink.hex
 	avrdude -c $(PROGRAMMER) -P $(PORT) -p $(BOARD) -U flash:w:$^:i
 
@@ -19,6 +21,6 @@ blink.o: blink.cpp
 	avr-gcc -g -Os -mmcu=$(BOARD) -c $^
 
 clean:
-	rm -f *.hex
-	rm -f *.elf
-	rm -f *.o
+	$(RM) *.hex
+	$(RM) *.elf
+	$(RM) *.o
