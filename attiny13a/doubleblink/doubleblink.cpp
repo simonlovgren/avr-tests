@@ -11,8 +11,12 @@ int main(void) {
 
   // Loop forever
   while(1) {
-    // LED On
-    PORTB ^= 0b00000001;
-    _delay_ms(500);
+    // LED On/Off every other loop
+    PORTB |= 0b00000001;
+    PORTB &= 0b11111101;
+    _delay_ms(250);
+    PORTB |= 0b00000010;
+    PORTB &= 0b11111110;
+    _delay_ms(250);
   }
 }
