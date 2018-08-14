@@ -1,5 +1,5 @@
 # Include common makefile(s)
-include ../atmega328.mk
+include ../atmega328p.mk
 
 # Set phony targets
 .PHONY: all upload clean
