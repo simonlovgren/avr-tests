@@ -25,7 +25,7 @@ upload: blink.hex
 	avrdude -c $(PROGRAMMER) -P $(PORT) -p $(BOARD) -U flash:w:$^:i
 
 readfuses:
-	avrdude -c $(PROGRAMMER) -P $(PORT) -p $(BOARD) -U efuse:r:-:i -U hfuse:r:-:i -U lfuse:r:-:i
+	avrdude -c $(PROGRAMMER) -P $(PORT) -p $(BOARD) -U fuse:r:-:i
 
 clean:
 	$(RM) *.hex

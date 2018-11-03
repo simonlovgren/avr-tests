@@ -1,5 +1,5 @@
 # ATTiny4/5/9/10
-Notes on ATTiny4/5/9/10, a tiny microcontroller with 512/1024B flash and 32B RAM.
+Notes on ATTiny4/5/9/10, a tiny microcontroller with 512/1024 Bytes flash and 32 Bytes SRAM.
 
 **Note: the ATtiny4/5/9/10 can only be programmed with 5V VCC**.
 
@@ -34,12 +34,12 @@ Notes on ATTiny4/5/9/10, a tiny microcontroller with 512/1024B flash and 32B RAM
 ### Read fuses
 
 ``` bash
-avrdude -c buspirate -p atmega8 -P /dev/ttyUSB0 -U BYTE0:r:-:i
+avrdude -c dasaftdi -p attiny10 -P /dev/ttyUSB0 -U fuse:r:-:i
 ```
 
 ### Program fuses
 
 #### Factory default settings
 ``` bash
-avrdude -c buspirate -p atmega8 -P /dev/ttyUSB0 -U BYTE0:w:0xFF:m
+avrdude -c dasaftdi -p attiny10 -P /dev/ttyUSB0 -U fuse:w:0xFF:m
 ```

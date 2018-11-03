@@ -29,3 +29,6 @@
 *.app
 *.hex
 *.elf
+
+# Build artifacts
+*.map
