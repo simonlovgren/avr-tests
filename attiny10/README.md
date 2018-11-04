@@ -8,7 +8,7 @@ The ATtiny4/5/9/10 series is programmed via TPI. **It is possible to program the
 
 For more information about using a FTDI serial cable as a programmer, [see this readme](avrdude).
 
-## Programming pinout
+## Pinout
 ``` text
 
          (PCINT0/TPIDATA /OC0A/ADC0/AIN0) PB0 --+--  --+-- PB3 (RESET/PCINT3/ADC3)
