@@ -36,4 +36,4 @@ programmer
 ## Notes
 When programming, I had many issues with `MOSI->MISO` communication. The first (and so far only) times I got past that issue was on Windows, the mac (OSX high sierra) never got further. Using ubuntu on Windows seems to not work either, but rather due to issues with the serial drivers (as windows is masquerading the ports) some IOCTL calls do not work properly.
 
-The issue with `MOSI->MISO` may be down to bad connections, as I got it on Windows after a while as well (and pressing down on the cable/connections fixed the issue).
+The issue with `MOSI->MISO` may be down to bad connections, as I got it on Windows after a while as well (and pressing down on the cable/connections fixed the issue). With a better breakout it works better, but OSX still does not work.
