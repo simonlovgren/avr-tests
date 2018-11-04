@@ -3,6 +3,11 @@ Notes on ATTiny4/5/9/10, a tiny microcontroller with 512/1024 Bytes flash and 32
 
 **Note: the ATtiny4/5/9/10 can only be programmed with 5V VCC**.
 
+## Programmer
+The ATtiny4/5/9/10 series is programmed via TPI. **It is possible to program these devices using an ordinary FTDI serial cable** (even one with 3.3V I/O levels, as long as the micro is fed 5V).
+
+For more information about using a FTDI serial cable as a programmer, [see this readme](avrdude).
+
 ## Programming pinout
 ``` text
 
