@@ -74,5 +74,5 @@ avrdude -c buspirate -p attiny85 -P /dev/ttyUSB0 -U efuse:w:0xFF:m -U hfuse:w:0x
 #### Internal RC oscillator @ 8MHz with divider disabled
 Internal 8MHz oscillator, No clock divider, rest is default.
 ``` bash
-avrdude -c buspirate -p attiny13 -P /dev/ttyUSB0 -U efuse:w:0xFF:m -U hfuse:w:0xDF:m -U lfuse:w:0xE2:m
+avrdude -c buspirate -p attiny85 -P /dev/ttyUSB0 -U efuse:w:0xFF:m -U hfuse:w:0xDF:m -U lfuse:w:0xE2:m
 ```
