@@ -1,18 +1,18 @@
 /**
  * MIT License
- * 
+ *
  * Copyright (c) 2017 Simon Lövgren
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,18 +24,18 @@
 
 /**
  * Based on http://kineticsandelectronics.com/sleep.html
- * 
+ *
  * This program is written to use an external 32.768kHz external crystal for
  * the internal timer with the ATMega running on the internal 8MHz crystal
  * oscillator, in order to function as a simple RTC and drive an industrial
  * (centrally controlled) clock.
- * 
+ *
  * The industrial clock (LM Ericsson) works by recieving a 24V pulse every
  * minute from a central master clock. The polarity of the pulse is switched
  * other every minute to drive the clock forward, as the clock mechanism
  * consists of a coil that turns the mechanism. If the polarity is not switched,
  * at most the clock will move one minute.
- * 
+ *
  * This solution uses a single H-bridge (DRV8871) to alternate polarity when
  * sending the signal and for this two outputs (PD1 and PD2) are used:
  *           ____
@@ -44,7 +44,7 @@
  *                                            ____
  *                                           |    |
  * PD1 ----------------------------/ /--------     -------- ...
- * 
+ *
  */
 
 /**
@@ -53,6 +53,10 @@
  */
 #ifndef F_CPU
 #define F_CPU 8000000UL
+#endif
+
+#ifndef __AVR_ATmega8__
+#define __AVR_ATmega8__
 #endif
 
 #include <avr/io.h>
@@ -184,9 +188,9 @@ void loop()
  * Timer setup.
  */
 void rtc_init(void)
-{  
+{
     TCCR2A = 0x00;  /** Overflow */
-    TCCR2B = 0x05;  /** Prescaler 5 gives 1s */ 
+    TCCR2B = 0x05;  /** Prescaler 5 gives 1s */
     TIMSK2 = 0x01;  /** Enable TIMER2A overflow interrupt. */
     ASSR   = 0x20;  /** Enable asynchronous mode. */
 }
@@ -203,7 +207,7 @@ void gnight()
     /**
      * There is a bug with the TIMER2 overflow interrupt in asynchronous mode
      * and going to sleep that causes the interrupt to fire twice, thus making
-     * stuff not work properly. The solution is to a clock cycle or two until
+     * stuff not work properly. The solution is to wait a clock cycle or two until
      * the timer counter is no longer 0 (here we wait at least 2 cycles).
      */
     if ( TCNT2 == (uint8_t)0xff || TCNT2 == 0 || TCNT2 == 1 )

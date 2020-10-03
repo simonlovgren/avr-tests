@@ -1,3 +1,7 @@
+#ifndef __AVR_ATtiny85__
+#define __AVR_ATtiny85__
+#endif
+
 #ifndef F_CPU
 #define F_CPU 8000000UL
 #endif
