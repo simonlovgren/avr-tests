@@ -1,5 +1,5 @@
 # ATTiny85
-Notes on ATTiny13A.
+Notes on ATTiny85.
 
 ## Programming pinout
 ``` text
